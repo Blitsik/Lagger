@@ -19,7 +19,13 @@ local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 -- Check if AnimalsData exists, if not, create dummy data
 local AnimalsData = {}
 pcall(function()
-    AnimalsData = require(ReplicatedStorage:WaitForChild("Datas"):WaitForChild("Animals"))
+    local Datas = ReplicatedStorage:FindFirstChild("Datas")
+    if Datas then
+        local Animals = Datas:FindFirstChild("Animals")
+        if Animals then
+            AnimalsData = require(Animals)
+        end
+    end
 end)
 
 local allAnimalsCache = {}
